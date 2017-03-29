@@ -83,8 +83,8 @@ Your app is ready to be deployed!
 Follow the next instructions to run this project localy
 
 ``` 
-[Clone the project in your selected directory] git clone https://github.com/lgutie16/GAME.git
-[Go inside the main source directory         ] cd GAME
-[Run script descripted above                 ]npm start
+ git clone https://github.com/lgutie16/GAME.git [Clone the project in your selected directory]
+ cd GAME                                        [Go inside the main source directory]
+ npm start                                      [Run script descripted above]
 
 ``` 
