@@ -6,19 +6,31 @@ class GameMove extends Component {
   constructor() {
     super();
     this.state = {
-      move: null
+      move1: null,
+      move2: null,
+      coord: 0
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
-    this.setState({move: event.target.value});
-    console.log(this.state.move)
+    var value = this.state.coord === 0 ? true : false;
+    console.log(value)
+    if(value)
+      this.setState({move1: event.target.value, coord: 1});
+    else
+      this.setState({move2: event.target.value, coord: 2});
   }
 
   handleSubmit(event) {
-    alert('Your favorite movement is: ' + this.state.move);
+    console.log(this.state.coord)
+    if(this.state.coord === 1){
+      alert('Your favorite movement is: ' + this.state.move1);
+    }else{
+      alert('Your favorite movement is move 2: ' + this.state.move2);
+      this.setState({coord: 0});
+    }    
     event.preventDefault();
   }
 
