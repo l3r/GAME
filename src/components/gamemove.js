@@ -72,19 +72,18 @@ class GameMove extends Component {
 
     this.state.history.push(data)
     if(this.state.counter == 2){      
-      this.getRoundWinner()
-      //Reset
+      this.closeRound()
     }
   }
 
-  //Round Winner
-  getRoundWinner(){
+  //Round Winner and Reset
+  closeRound(){
     if(this.state.counterwinner > 1){
       console.log('jugador1')
     }else{
       console.log('jugador2')
     }
-    this.setState({counterwinner: 0, counter: 0})    
+    this.setState({counterwinner: 0, counter: 0, data: []})    
   } 
 
   render() {
