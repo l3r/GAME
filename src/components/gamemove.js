@@ -13,14 +13,13 @@ class GameMove extends Component {
       turn      : true,
       coord     : 0, 
       counter   : 0,
-      history   : [],
+      history     : [],
+      historyTotal: [],
       isOpen    : false,
       winner    : null,      
       counterwinner: 0
     }
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-
     this.openModal    = this.openModal.bind(this);
     this.closeModal   = this.keepPlaying.bind(this);
     this.setActive    = this.setActive.bind(this)
@@ -42,27 +41,19 @@ class GameMove extends Component {
   }
 
   handleChange(event) {
-    var value = this.state.coord === 0 ? true : false;
-    console.log(value)
-    if(value)
+    if(this.state.coord === 0){
       this.setState({move1: event.target.value, coord: 1});
-    else
-      this.setState({move2: event.target.value, coord: 2});
-  }
-
-  handleSubmit(event) {
-    console.log(this.state.coord)
-    if(this.state.coord === 1){
-      console.log('Movement ' + this.state.move1);
-    }else{
-     console.log('Movement ' + this.state.move2);
-      this.setState({coord: 0});
-      this.getWinner()
-    }    
-    this.setState({turn: !this.state.turn});
+      this.setState({turn: !this.state.turn});
+    }else if(this.state.coord === 1){
+      this.setState({move2: event.target.value, coord: 0});
+      console.log('Movement ' + this.state.move2);
+      this.getWinner()         
+      this.setState({turn: !this.state.turn});
+    }
     event.preventDefault();
   }
-   
+
+  
   //Movement Winner
   getWinner(){
     var data = {}
@@ -103,8 +94,12 @@ class GameMove extends Component {
       this.setState({winner: this.props.players.player1.name, isOpen: true})
     }else{
       this.setState({winner: this.props.players.player2.name, isOpen: true})
-    }  
-  } 
+    }
+    var data = {}
+    data.winner = this.state.winner
+    this.state.historyTotal.push(data)
+    this.setState({historyTotal: this.state.winner})
+  }
 
   setActive(){
     this.props.setvisible()
@@ -135,22 +130,24 @@ class GameMove extends Component {
           <div className="row">         
             <div className="small-6 columns">
                 <label>Turn: {turnname}</label>
-                <form onSubmit={this.handleSubmit}>
+                <form>
                   <label>
-                   <select name="movement" value={this.state.move} onChange={this.handleChange}>
+                   <select name="movement" value={arr.value} onChange={this.handleChange}>
                     {arr}
                    </select>
                    </label>
-                  <input type="submit" className="button expanded" value="Send Movement" />
+                  <span className="label">Select your Movement</span>
                 </form>
             </div>
             <div className="small-6 columns">
               <GameResults history={this.state.history}/>                
             </div>
+            <div>
+              <GameResults history={this.state.historyTotal}/> 
+            </div>
           </div>
         </div>
 
-        
         <Modal
           isOpen={this.state.isOpen}
           onRequestClose={this.closeModal}
