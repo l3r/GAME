@@ -1,9 +1,23 @@
 ## Technical Overview
 This project was created using Reactjs and Firebase Database.
 
-Frontend structure is as follows, according to Reactjs principles
+Frontend structure is as follows, according to Reactjs principles:
 
-![Alt text](/images/fotolinda?raw=true "Optional Title")
+
+The First Screen just how one component called registration, which has a embedded form.
+![Alt text](/images/structure1.png?raw=true "First Screen")
+
+
+The Second Screen contains three components  
+
+```
+-game
+  --gamemove
+    ---(embedded html)
+    ---gameresult
+    ---gameresult
+![Alt text](/images/structure2.png?raw=true "Second Screen")
+As you can see there  is a reused component, gameresult, which is used to display the round winner and the winners of the games.
 
 
 ## Folder Structure

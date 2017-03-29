@@ -89,16 +89,17 @@ class GameMove extends Component {
   }
 
   //Round Winner
-  closeRound(){
+  closeRound(){    
+    var data = {}
     if(this.state.counterwinner > 1){
+      data.winner = this.props.players.player1.name
       this.setState({winner: this.props.players.player1.name, isOpen: true})
     }else{
+      data.winner = this.props.players.player2.name
       this.setState({winner: this.props.players.player2.name, isOpen: true})
     }
-    var data = {}
-    data.winner = this.state.winner
+    console.log(data)
     this.state.historyTotal.push(data)
-    this.setState({historyTotal: this.state.winner})
   }
 
   setActive(){
@@ -141,11 +142,15 @@ class GameMove extends Component {
             </div>
             <div className="small-6 columns">
               <GameResults history={this.state.history}/>                
-            </div>
-            <div>
-              <GameResults history={this.state.historyTotal}/> 
-            </div>
-          </div>
+            </div>            
+          </div>          
+        </div>
+
+        <div className="row">
+          <div className="small-12 columns">
+            <h2>Game Winners</h2>
+            <GameResults history={this.state.historyTotal}/>
+          </div> 
         </div>
 
         <Modal

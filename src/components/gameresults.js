@@ -7,14 +7,16 @@ class GameResults extends Component {
   }
 
   render() {
-    var moves = this.props.history    
+    var moves = this.props.history  
+    var i = 0;  
     var arr = $.map(moves, function(move) {
+      i++;
       return (
         <div className="callout">
           <div className="row">
             <div className="small-1 columns">
               <span className="label radius">
-                roundNum
+                {i}
               </span>
             </div>
             <div className="small-11 columns">
