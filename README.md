@@ -79,7 +79,7 @@ The build is minified and the filenames include the hashes.<br>
 Your app is ready to be deployed!
 
 
-##Instruction to run this Project
+## Instruction to run this Project
 Follow the next instructions to run this project localy
 
 ``` 
