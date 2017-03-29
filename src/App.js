@@ -17,7 +17,6 @@ class App extends Component {
   }
 
   setObjectActive(){
-    console.log("Here")
     this.setState({
       active: !this.state.active
     })
@@ -42,12 +41,12 @@ class App extends Component {
 
   render() {
       return (
-          <div className="row">
-            <div className="small-12 medium-6 medium-offset-3 columns">
-              <Registration />  
-              <Game players={this.state}/>
-            </div>
-          </div>        
+        <div className="row">
+          <div className="small-12 medium-6 medium-offset-3 columns">
+            {this.state.active && <Registration setvisible={this.setObjectActive.bind(this)}/>}             
+            {!this.state.active && <Game players={this.state}/> }              
+          </div>
+        </div>    
       );
    }
 }

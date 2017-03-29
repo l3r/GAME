@@ -32,9 +32,9 @@ class GameMove extends Component {
   handleSubmit(event) {
     console.log(this.state.coord)
     if(this.state.coord === 1){
-      alert('Movement ' + this.state.move1);
+      console.log('Movement ' + this.state.move1);
     }else{
-      alert('Movement ' + this.state.move2);
+     console.log('Movement ' + this.state.move2);
       this.setState({coord: 0});
       this.getWinner()
     }    

@@ -38,8 +38,7 @@ class Registration extends Component {
   }
 
   setActive(){
-  	this.props.setactive()
-
+  	this.props.setvisible()
   }
 
   render() {
