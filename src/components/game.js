@@ -26,8 +26,6 @@ class Game extends Component {
     return (
       <div className="App">
       	<GameMove moves={this.state.moves} players={this.props.players} setvisible={this.setActive.bind(this)}/>
-        {this.props.players.player1.name}
-        {this.props.players.player2.name}
       </div>
     );
   }

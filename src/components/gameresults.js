@@ -28,6 +28,7 @@ class GameResults extends Component {
     }); 
     return (     
       <div className="App">
+        <label>{this.props.title}</label>
         {arr}
       </div>
     );

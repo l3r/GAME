@@ -141,15 +141,14 @@ class GameMove extends Component {
                 </form>
             </div>
             <div className="small-6 columns">
-              <GameResults history={this.state.history}/>                
+              <GameResults history={this.state.history} title={"Rounds"}/>                
             </div>            
           </div>          
         </div>
 
         <div className="row">
           <div className="small-12 columns">
-            <h2>Game Winners</h2>
-            <GameResults history={this.state.historyTotal}/>
+            <GameResults history={this.state.historyTotal} title={"Winners"}/>
           </div> 
         </div>
 
