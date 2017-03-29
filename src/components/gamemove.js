@@ -159,9 +159,9 @@ class GameMove extends Component {
           contentLabel="Example Modal"
         >
            <h1 className="header text-center"> ¡Winner!</h1>
-           <h2 className="center"><span className="label">{this.state.winner}</span></h2>
+           <h2 className="center"><span className="label">{this.state.winner} is the new EMPEROR</span></h2>
            
-           <button type="button" className="button expanded success" onClick={this.closeModal}>Keep playing</button>
+           <button type="button" className="button expanded success" onClick={this.closeModal}>Play again</button>
            <button type="button" className="button expanded danger" onClick={this.setActive}>Quit game</button>
         </Modal>
       
