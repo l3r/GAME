@@ -1,23 +1,44 @@
 import React, { Component } from 'react';
 import $ from 'jquery'
 import * as firebase from 'firebase'
-
+import Modal from 'react-modal';
 import GameResults from './gameresults'
 
 class GameMove extends Component {
   constructor() {
     super();
     this.state = {
-      move1: null,
-      move2: null,
-      turn: true,
-      coord: 0, 
-      counter: 0,
-      counterwinner: 0,
-      history: []
+      move1     : null,
+      move2     : null,
+      turn      : true,
+      coord     : 0, 
+      counter   : 0,
+      history   : [],
+      isOpen    : false,
+      winner    : null,      
+      counterwinner: 0
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+
+    this.openModal    = this.openModal.bind(this);
+    this.closeModal   = this.keepPlaying.bind(this);
+    this.setActive    = this.setActive.bind(this)
+  }
+
+  openModal(){ //Open Modal
+    this.setState({
+      isOpen: true
+    });
+  }
+     
+  keepPlaying(){ //Hide Modal and keep playing
+    this.setState({
+      isOpen:false,
+      counterwinner: 0, 
+      counter: 0, 
+      history: []
+    })
   }
 
   handleChange(event) {
@@ -76,17 +97,30 @@ class GameMove extends Component {
     }
   }
 
-  //Round Winner and Reset
+  //Round Winner
   closeRound(){
     if(this.state.counterwinner > 1){
-      console.log('jugador1')
+      this.setState({winner: this.props.players.player1.name, isOpen: true})
     }else{
-      console.log('jugador2')
-    }
-    this.setState({counterwinner: 0, counter: 0, data: []})    
+      this.setState({winner: this.props.players.player2.name, isOpen: true})
+    }  
   } 
 
+  setActive(){
+    this.props.setvisible()
+  }  
+
   render() {
+    const customStyles = {
+        content : {
+          top        : '50%',
+          left       : '50%',
+          right      : 'auto',
+          bottom     : 'auto',
+          marginRight: '-50%',
+          transform  : 'translate(-50%, -70%)'
+        }
+    }
     var player1 =  this.props.players.player1.name
     var player2 =  this.props.players.player2.name
     var turnname = this.state.turn === true ?  player1: player2;
@@ -95,7 +129,8 @@ class GameMove extends Component {
       return (<option key={move.move} value={move.move}> {move.move} </option>)    
     });     
     return (
-      <div className="callout">
+      <div className="center">
+        <div className="callout">
           <h2>{player1} vs {player2}</h2>
           <div className="row">         
             <div className="small-6 columns">
@@ -114,6 +149,22 @@ class GameMove extends Component {
             </div>
           </div>
         </div>
+
+        
+        <Modal
+          isOpen={this.state.isOpen}
+          onRequestClose={this.closeModal}
+          style={customStyles}
+          contentLabel="Example Modal"
+        >
+           <h1 className="header text-center"> ¡Winner!</h1>
+           <h2 className="center"><span className="label">{this.state.winner}</span></h2>
+           
+           <button type="button" className="button expanded success" onClick={this.closeModal}>Keep playing</button>
+           <button type="button" className="button expanded danger" onClick={this.setActive}>Quit game</button>
+        </Modal>
+      
+      </div>
       
     );
   }

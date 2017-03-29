@@ -27,14 +27,13 @@ class Registration extends Component {
   } 
 
   savedata(){
-	firebase.database().ref().child('players').child('player1').set({
-		name: this.state.player1	
-	});
-	firebase.database().ref().child('players').child('player2').set({
-		name: this.state.player2
-	});
-
-	this.setActive()
+  	firebase.database().ref().child('players').child('player1').set({
+  		name: this.state.player1	
+  	});
+  	firebase.database().ref().child('players').child('player2').set({
+  		name: this.state.player2
+  	});
+  	this.setActive()
   }
 
   setActive(){

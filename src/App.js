@@ -44,7 +44,7 @@ class App extends Component {
         <div className="row">
           <div className="small-12 medium-6 medium-offset-3 columns">
             {this.state.active && <Registration setvisible={this.setObjectActive.bind(this)}/>}             
-            {!this.state.active && <Game players={this.state}/> }              
+            {!this.state.active && <Game players={this.state} setvisible={this.setObjectActive.bind(this)} /> }              
           </div>
         </div>    
       );
