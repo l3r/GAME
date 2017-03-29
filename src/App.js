@@ -11,8 +11,16 @@ class App extends Component {
     super();
     this.state = {
       player1: "nothing",
-      player2: "nothing2"
+      player2: "nothing2",
+      active: true
     }
+  }
+
+  setActive(){
+    console.log("Here")
+    this.setState({
+      active: false
+    })
   }
 
   componentDidMount(){
@@ -33,12 +41,19 @@ class App extends Component {
   }
 
   render() {
+    if(this.state.active){
+       return (
+        <div className="App">
+          <Registration setactive={this.setActive.bind(this)}/>        
+        </div>
+      );
+    }
     return (
       <div className="App">
-        <Registration />
         <Game players={this.state}/>
       </div>
     );
+   
   }
 }
 

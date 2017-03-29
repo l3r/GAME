@@ -10,7 +10,8 @@ class Registration extends Component {
     	player2: null
     }
     this.handleChange = this.handleChange.bind(this)
-    this.savedata = this.savedata.bind(this)
+    this.savedata = this.savedata.bind(this)    
+  	self = this
   }
 
   handleChange(event) {
@@ -32,6 +33,11 @@ class Registration extends Component {
 	firebase.database().ref().child('players').child('player2').set({
 		name: this.state.player2
 	});
+  }
+
+  setActive(){
+  	console.log("in here")
+	this.props.setactive
   }
 
   render() {

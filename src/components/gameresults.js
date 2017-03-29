@@ -8,8 +8,10 @@ class GameResults extends Component {
 
   render() {
     var moves = this.props.history 
+    var i;
     var arr = $.map(moves, function(move) {
-      return (<option  ></option>)    
+      i ++;
+      return (<div>{move.winner}</div>)    
     }); 
     return (     
       <div className="App">
