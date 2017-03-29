@@ -7,15 +7,26 @@ class GameResults extends Component {
   }
 
   render() {
-    var moves = this.props.history 
-    var i;
+    var moves = this.props.history    
     var arr = $.map(moves, function(move) {
-      i ++;
-      return (<div>{move.winner}</div>)    
+      return (
+        <div className="callout">
+          <div className="row">
+            <div className="small-1 columns">
+              <span className="label radius">
+                roundNum
+              </span>
+            </div>
+            <div className="small-11 columns">
+              <strong>{move.winner}</strong>                
+            </div>
+          </div>
+        </div>
+      )    
     }); 
     return (     
       <div className="App">
-      	 {arr}
+        {arr}
       </div>
     );
   }

@@ -33,19 +33,30 @@ class Registration extends Component {
 	firebase.database().ref().child('players').child('player2').set({
 		name: this.state.player2
 	});
+
+	this.setActive()
   }
 
   setActive(){
-  	console.log("in here")
-	this.props.setactive
+  	this.props.setactive()
+
   }
 
   render() {
     return (
       <div className="App">
-       	Player 1 : <input type="text" name="player1" placeholder="name" onChange={this.handleChange}/> < br />
-       	Player 2 : <input type="text" name="player2" placeholder="name" onChange={this.handleChange}/> < br />
-        <button type="button" onClick={this.savedata}>Send</button>
+         <form className="callout">
+         	<h2>Players Name</h2>
+         	<p>
+	       	 <label for="">Player 1 </label> <input type="text" name="player1" placeholder="name" onChange={this.handleChange}/> < br />
+	       	</p>
+	       	<p>
+	       	 <label for="">Player 2 </label> <input type="text" name="player2" placeholder="name" onChange={this.handleChange}/> < br />
+	       	</p>
+	       	<p>
+	         <button type="button" className="button expanded" onClick={this.savedata}>Send</button>
+	        </p>
+        </form>
       </div>
     );
   }

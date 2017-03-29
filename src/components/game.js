@@ -18,10 +18,27 @@ class Game extends Component {
     self = this  
   }
 
+  componentDidMount(){  
+    const rootref = firebase.database().ref().child('players')
+    const player1 = rootref.child('player1')
+    const player2 = rootref.child('player2')
+      player1.on('value', snap => {
+        this.setState({
+          player1: snap.val()
+        })
+      })
+      player2.on('value', snap => {
+        this.setState({
+          player2: snap.val()
+        })
+      })
+  }
+
+
   render() {
     return (
       <div className="App">
-      	<GameMove moves={this.state.moves}/>
+      	<GameMove moves={this.state.moves} players={this.props.players}/>
         {this.props.players.player1.name}
         {this.props.players.player2.name}
       </div>

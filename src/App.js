@@ -16,15 +16,15 @@ class App extends Component {
     }
   }
 
-  setActive(){
+  setObjectActive(){
     console.log("Here")
     this.setState({
-      active: false
+      active: !this.state.active
     })
   }
 
   componentDidMount(){
-    console.log('component componentDidMounts')
+  
     const rootref = firebase.database().ref().child('players')
     const player1 = rootref.child('player1')
     const player2 = rootref.child('player2')
@@ -41,20 +41,15 @@ class App extends Component {
   }
 
   render() {
-    if(this.state.active){
-       return (
-        <div className="App">
-          <Registration setactive={this.setActive.bind(this)}/>        
-        </div>
+      return (
+          <div className="row">
+            <div className="small-12 medium-6 medium-offset-3 columns">
+              <Registration />  
+              <Game players={this.state}/>
+            </div>
+          </div>        
       );
-    }
-    return (
-      <div className="App">
-        <Game players={this.state}/>
-      </div>
-    );
-   
-  }
+   }
 }
 
 export default App;

@@ -10,6 +10,7 @@ class GameMove extends Component {
     this.state = {
       move1: null,
       move2: null,
+      turn: true,
       coord: 0, 
       counter: 0,
       counterwinner: 0,
@@ -37,6 +38,7 @@ class GameMove extends Component {
       this.setState({coord: 0});
       this.getWinner()
     }    
+    this.setState({turn: !this.state.turn});
     event.preventDefault();
   }
    
@@ -61,11 +63,11 @@ class GameMove extends Component {
     console.log(result2)
 
     if(!$.isEmptyObject(result2)){
-      data.winner = 'jugador1'
+      data.winner = this.props.players.player1.name
       var cow = this.state.counterwinner + 1;
       this.setState({counterwinner: cow})
     }else{
-      data.winner = 'jugador2'
+      data.winner = this.props.players.player2.name
     }
 
     this.state.history.push(data)
@@ -82,27 +84,38 @@ class GameMove extends Component {
     }else{
       console.log('jugador2')
     }
-    this.setState({counterwinner: 0, counter: 0})
-    
+    this.setState({counterwinner: 0, counter: 0})    
   } 
 
   render() {
+    var player1 =  this.props.players.player1.name
+    var player2 =  this.props.players.player2.name
+    var turnname = this.state.turn === true ?  player1: player2;
     var moves = this.props.moves 
     var arr = $.map(moves, function(move) {
       return (<option key={move.move} value={move.move}> {move.move} </option>)    
     });     
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-           <select name="movement" value={this.state.move} onChange={this.handleChange}>
-            {arr}
-           </select>
-           </label>
-          <input type="submit" value="Ok" />
-        </form>
-        <GameResults history={this.state.history}/> 
-      </div>
+      <div className="callout">
+          <h2>{player1} vs {player2}</h2>
+          <div className="row">         
+            <div className="small-6 columns">
+                <label>Turn: {turnname}</label>
+                <form onSubmit={this.handleSubmit}>
+                  <label>
+                   <select name="movement" value={this.state.move} onChange={this.handleChange}>
+                    {arr}
+                   </select>
+                   </label>
+                  <input type="submit" className="button expanded" value="Send Movement" />
+                </form>
+            </div>
+            <div className="small-6 columns">
+              <GameResults history={this.state.history}/>                
+            </div>
+          </div>
+        </div>
+      
     );
   }
 }
