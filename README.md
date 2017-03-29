@@ -3,7 +3,7 @@ This project was created using Reactjs and Firebase Database.
 
 Frontend structure is as follows, according to Reactjs principles
 
-![alt tag](https://drive.google.com/file/d/0B-UGJbwAO8yuU1F5bXBNZ1VKUms/view?usp=sharing)
+![Alt text](/images/fotolinda.jpg?raw=true "Optional Title")
 
 
 ## Folder Structure
