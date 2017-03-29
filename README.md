@@ -16,7 +16,9 @@ The Second Screen contains three components
     ---(embedded html)
     ---gameresult
     ---gameresult
+
 ![Alt text](/images/structure2.png?raw=true "Second Screen")
+
 As you can see there  is a reused component, gameresult, which is used to display the round winner and the winners of the games.
 
 
